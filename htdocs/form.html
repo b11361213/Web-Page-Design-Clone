@@ -3,39 +3,45 @@
     <head>
         <title>localhost/form.html</title>
         <meta charset="utf-8">
-        <link rel="icon" type="image/gif" href="konata.gif">
+        <link rel="icon" type="image/gif" href="image/konata.gif">
         <link rel="stylesheet" type="text/css" href="i18n.css" />
         <link rel="stylesheet" type="text/css" href="i18n-items.css" />
         <link rel="stylesheet" type="text/css" href="main.css" />
         <script src="jquery.js"></script>
         <style>
             [langSelect] span {
-            border: solid 1px;
-            border-radius: 3px;
-            background-color: gainsboro;
-            padding: 3px;
-            cursor: pointer;
+                border: solid 1px;
+                border-radius: 3px;
+                background-color: gainsboro;
+                font-family: NotoSefif;
+                padding: 3px;
+                cursor: pointer;
+            }
+            [class=langSelect] {
+                font-size: 16px;
+                font-family: NotoSefif;
             }
             [class=title] {
-                font-size: 30px;
+                font-size: 36px;
                 font-family: NotoSefif;
                 text-align: center;
             }
             [class=date] {
-                font-size: 16px;
+                font-size: 18px;
                 font-family: NotoSefif;
                 text-align: left;
             }
             [class=content] {
-                font-size: 18px;
+                font-size: 22px;
                 font-family: NotoSefif;
                 text-align: left;
             }
             [class=subcontent] {
-                font-size: 18px;
+                font-size: 22px;
                 font-family: NotoSefif;
                 text-align: left;
-                margin: 5px;
+                text-indent: 180px;
+                /* margin-left:5px; */
             }
             flexrow {
                 display: flex;
@@ -56,8 +62,8 @@
         <!-- [i18n Google sheet](https://docs.google.com/spreadsheets/d/1sp-Rw0xcjd-nEMIacbVywY5zIlCbBGr-Ja9EF0DgJfg) -->
     </head>
     <body language="Chinese">
-        <span>Language select --</span>
-        <span langSelect>
+        <span class=langSelect>Language select --</span>
+        <span class=langSelect langSelect>
             <span onclick="langChange(this);">Chinese</span>
             <span onclick="langChange(this);">English</span>
         </span>
@@ -80,6 +86,7 @@
                 <!-- <span select=true i18n=firstTime></span> -->
             </div>
             <div class=content i18n=description></div>
+                <div class=subcontent>Handled in accordance with Article 5 of the Certified Public Bookkeepers Act and Rules Governing Issuance of Certificate of Public Bookkeeper.</div>
         </block>
 
         <script>
@@ -99,7 +106,7 @@
                 let items = ["firstTime", "certificateHasCeased", "lost", "replacement", "englishVersion"];
 
                 for (let item of items) {
-                    $(`<span class=subcontent select=false i18n=${item}></span>`).appendTo(obj).OnClick(function(e) {
+                    $(`<div class=subcontent select=false i18n=${item}></div>`).appendTo(obj).OnClick(function(e) {
                         let u = e.currentTarget;
                         let select = $(u).attr('select');
                         if (select == 'false') {
