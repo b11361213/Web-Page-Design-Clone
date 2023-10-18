@@ -66,7 +66,7 @@
                 margin-left: 180px;
                 margin-top: 8px;
                 padding-bottom: 12px;
-                padding-left: 12px;
+                padding-left: 32px;
                 padding-top: 12px;
                 text-align: left;
             }
@@ -75,6 +75,9 @@
                 /* right: 12px; */
                 bottom: 4px;
                 font-size: 14px;
+            }
+            #checkboxOption {
+                margin-left: 24px;
             }
             flexrow {
                 display: flex;
@@ -160,13 +163,12 @@
         <!-- footer memo -->
         <div id=memo>推薦使用 Firefox 瀏覽器瀏覽本網頁，以獲得最佳體驗</div>
 
-        <script>
+        <script>          
             function langChange(obj) {
                 let str = $(obj).text();
                 // console.log(str);
                 $("body").attr("language", str);
-            }
-            
+            }       
             $.fn.OnClick = function(fun) {
                 let o = this;
                 $(o).css('cursor', 'pointer');
@@ -176,8 +178,8 @@
             function csvConvert(str) {
                 return str.split(",").map(x=>x.trim()).filter(x=>x);
             }
-            function contentItems(obj) {
-                let items = csvConvert("firstTime, certificateHasCeased, lost, replacement, englishVersion");
+            function applyForSel(obj) {
+                let items = csvConvert(`firstTime, certificateHasCeased, lost, replacement, englishVersion`);
                 // let items = ["firstTime", "certificateHasCeased", "lost", "replacement", "englishVersion"];
 
                 for (let item of items) {
@@ -196,10 +198,29 @@
                 }
             }
             function residenceSel(obj) {
-                
-                $.fn.residence = function(title) {
-                    let obj = this;
-                }
+                let citiesAndCounties = csvConvert(`
+                    taipeiCity, keelungCity, newTaipeiCity, lienchiangCounty, 
+                    yilanCounty, hsinchuCity, hsinchuCounty, taoyuanCity, 
+                    miaoliCounty, taichungCity, changhuaCounty, nantouCounty, 
+                    chiayiCity, chiayiCounty, yunlinCounty, tainanCity, 
+                    kaohsiungCity, penghuCounty, kinmenCounty, pingtungCounty, 
+                    taitungCounty, hualienCounty
+                    `);
+
+                for (let cityAndCounty of citiesAndCounties) {
+                    $(`<span style=white-space: nowrap select=false i18n=${cityAndCounty} id=checkboxOption></div>`).appendTo(obj).OnClick(function(e) {
+                        let u = e.currentTarget;
+                        let select = $(u).attr('select');
+                        if (select == 'false') {
+                            select = 'true';
+                            $(u).siblings().attr('select', 'false');
+                        }
+                        else {
+                            select = 'false';
+                        }
+                        $(u).attr('select', select);
+                    });
+                };
             }
             function fillOut(obj, tag) {
                 $.fn.fillIn = function(title) {
@@ -238,8 +259,8 @@
                     }
                 }
 
-            contentItems($("[i18n=purpose]"))
-            residenceSel($("[residence]"))
+            applyForSel($("[i18n=purpose]"));
+            residenceSel($("[residence]"));
 
             fillOut($("[information]"), "info");
             fillOut($("[contact]"), "contact");
