@@ -20,9 +20,9 @@ xcopy 'C:\Users\Administrator\Downloads\Web-Page-Design-main\htdocs\*' 'C:\xampp
 
 ## To-do list
 
-[ ] 安裝 SSL 憑證  
-[ ] 啟動 XAMPP  
- - [ ] 啟動 Apache
- - [ ] 啟動 MySQL
-   - [ ] 建立 Form 資料庫
-   - [ ] Rebuild table
+ - [ ] 安裝 SSL 憑證  
+ - [ ] 啟動 XAMPP  
+   - [ ] 啟動 Apache
+   - [ ] 啟動 MySQL
+     - [ ] 建立 Form 資料庫
+     - [ ] Rebuild table
