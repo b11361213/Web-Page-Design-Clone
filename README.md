@@ -27,11 +27,13 @@ xcopy 'C:\Users\Administrator\Downloads\Web-Page-Design-main\others\httpd-xampp.
 
 [XAMPP 8.2.4](https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/8.2.4/)
 
+[Inspect database](https://localhost/query.php?query=retrieve)
+
 ## To-do list
 
  - [ ] 安裝 SSL 憑證  
  - [ ] 啟動 XAMPP  
    - [ ] 啟動 Apache
    - [ ] 啟動 MySQL
-     - [ ] 建立 Form 資料庫
-     - [ ] Rebuild table
+     - [ ] [建立 form 資料庫](https://localhost/phpmyadmin/index.php?route=/server/databases)
+     - [ ] [重建 dataform 資料表](https://localhost/query.php?query=rebuild)
